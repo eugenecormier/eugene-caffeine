@@ -8,10 +8,11 @@ def main():
     while True:
         sleep(60)
         winlist = check_output('DISPLAY=:0.0 wmctrl -l', shell = True)
-        if 'Netflix' in str(winlist) or 'YouTube' in str(winlist) or 'pdfpc' in str(winlist):
+        if 'Netflix' in str(winlist) or 'YouTube' in str(winlist) or 'pdfpc' in str(winlist) or 'Minecraft' in str(winlist):
             if dontspam == 0:
-                print('...watching videos, disabling xautolock')
+                #print('...watching videos, disabling xautolock')
                 call(["xautolock", "-disable"])
+                call(["xset", "s off -dpms"])
                 # comment out next line if not using awesomewm
                 call("""awesome-client 'cafficon.image = "/home/ecormier/.icons/my-caffeine-on-symbolic.png"'""", shell = True)
                 dontspam=1
@@ -19,8 +20,9 @@ def main():
                 pass
         else:
             if dontspam == 1:
-                print('...not watching videos, enabling xautolock')
+                #print('...not watching videos, enabling xautolock')
                 call(["xautolock", "-enable"])
+                call(["xset", "s on dpms"])
                 # comment out next line if not using awesomewm
                 call("""awesome-client 'cafficon.image = "/home/ecormier/.icons/my-caffeine-off-symbolic.png"'""", shell = True)
                 dontspam=0
